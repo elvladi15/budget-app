@@ -5,12 +5,12 @@ import { Button } from "react-bootstrap";
 
 import { currencyFormatter } from "../utils";
 
-export default function BudgetCard({ isGray, title, amount, max }) {
+export default function BudgetCard({ isGray, name, amount, max, onAddExpenseClick }) {
   return (
     <Card className={getCardClassNames(isGray, amount, max).join(" ")}>
       <Card.Body>
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-3">
-          <div className="me-2">{title}</div>
+          <div className="me-2">{name}</div>
           <div className="d-flex align-items-baseline">
             {currencyFormatter.format(amount)} /
             <span className="text-muted fs-6 ms-1">{currencyFormatter.format(max)}</span>
@@ -24,7 +24,7 @@ export default function BudgetCard({ isGray, title, amount, max }) {
           now={amount}
         />
         <Stack direction="horizontal" gap={2}>
-          <Button variant="outline-primary" className="ms-auto">
+          <Button variant="outline-primary" className="ms-auto" onClick={onAddExpenseClick}>
             Add Expense
           </Button>
           <Button variant="outline-secondary">View Expenses</Button>
