@@ -44,6 +44,17 @@ export const BudgetsProvider = ({ children }) => {
     });
   }
   function deleteBudget(id) {
+    setExpenses(prevExpenses => {
+      return prevExpenses.map(expense => {
+        if (expense.budgetId === id) {
+          return {
+            ...expense,
+            budgetId: UNCATEGORIZED_BUDGET_ID,
+          };
+        }
+        return expense;
+      });
+    });
     setBudgets(prevBudges => {
       return prevBudges.filter(budget => budget.id !== id);
     });
